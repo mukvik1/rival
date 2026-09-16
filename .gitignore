@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.env
+rival.db
+*.sqlite
+.DS_Store
