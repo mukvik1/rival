@@ -30,6 +30,9 @@ logging.basicConfig(
     level=logging.INFO,
 )
 logger = logging.getLogger("rival-bot")
+# Не выводим HTTP-запросы Telegram в production-логи: URL Bot API содержит токен.
+logging.getLogger("httpx").setLevel(logging.WARNING)
+logging.getLogger("httpcore").setLevel(logging.WARNING)
 
 KYIV = ZoneInfo("Europe/Kyiv")
 BOT_TOKEN = os.getenv("BOT_TOKEN", "").strip()
