@@ -742,6 +742,14 @@ def build_app() -> Application:
 
 
 def main():
+    if not BOT_TOKEN:
+        # Даём Railway успешно поднять сервис ещё до того, как добавлен секрет.
+        # После установки BOT_TOKEN сервис будет перезапущен и бот начнёт polling.
+        import time as _time
+        logger.warning("BOT_TOKEN is not set yet; waiting for configuration")
+        while True:
+            _time.sleep(3600)
+
     app = build_app()
     logger.info("RIVAL bot started")
     app.run_polling(drop_pending_updates=True)
