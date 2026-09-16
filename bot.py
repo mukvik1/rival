@@ -617,6 +617,10 @@ async def cb_user_cancel(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
             pass
 
 
+async def cmd_id(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(f"Ваш Telegram ID: {update.effective_user.id}")
+
+
 async def cmd_admin(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
     if not is_admin(update.effective_user.id):
         return
@@ -725,6 +729,7 @@ def build_app() -> Application:
     app.add_handler(CommandHandler("start", cmd_start))
     app.add_handler(CommandHandler("menu", cmd_start))
     app.add_handler(CommandHandler("admin", cmd_admin))
+    app.add_handler(CommandHandler("id", cmd_id))
 
     app.add_handler(booking_conv)
 
